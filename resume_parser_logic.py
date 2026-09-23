@@ -1,7 +1,6 @@
 import json
 import os
 from pathlib import Path
-import time
 from dotenv import load_dotenv
 from groq import Groq
 from pydantic import BaseModel, Field
@@ -41,6 +40,11 @@ class Internship(BaseModel):
     duration:str
     description:str
     skills_used:list[str]=Field(default_factory=list)
+
+class HRProfile(BaseModel):
+    reason_for_leaving: str | None = None
+    strengths: list[str] = Field(default_factory=list)
+    weaknesses: list[str] = Field(default_factory=list)     
         
 class Resume(BaseModel):
     name:str | None=None
@@ -56,6 +60,7 @@ class Resume(BaseModel):
     github:str | None=None
     linkedin:str| None=None
     internships:list[Internship]=Field(default_factory=list)
+    hr_profile: HRProfile | None = None
 
 class JDMatchingResult(BaseModel):
     match_percentage:float
@@ -64,6 +69,8 @@ class JDMatchingResult(BaseModel):
     relevant_experience:str | None=None
     relevant_projects:str |None=None
     explanation: str
+
+   
 
     
 resume_schema=Resume.model_json_schema() 
@@ -103,7 +110,7 @@ def match_jd(jd_text,candidate_profile):
     
     user_prompt = """
     Compare the provided job description with the provided candidate profile
-    and gene rate the JD matching result.
+    and generate the JD matching result.
     """
     system_message={
             "role":"system",
@@ -224,11 +231,23 @@ def process_resume(file_path):
         if not resume_text:
             print("Could not extract resume text. Skipping...")
             return
+        
+        hr_profile = None
+
+        if Path("candidate_profile.json").exists():
+            with open("candidate_profile.json", "r", encoding="utf-8") as f:
+                existing_profile = json.load(f)
+
+            hr_profile = existing_profile.get("hr_profile")
 
         parsed_resume = parse_resume(resume_text)
+        if hr_profile:
+            parsed_resume["hr_profile"] = hr_profile
 
         with open("candidate_profile.json", "w", encoding="utf-8") as f:
             json.dump(parsed_resume, f, indent=4)
+        print("Candidate profile updated successfully.")
+    
 
     except Exception as e:
         print("ERROR processing:", file_path.name)
