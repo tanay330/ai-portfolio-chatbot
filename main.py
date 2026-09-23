@@ -7,6 +7,8 @@ from resume_parser_logic import read_pdf, read_docx, match_jd
 from pathlib import Path
 import json
 from fastapi.responses import StreamingResponse
+import tempfile
+import os
 
 
 app=FastAPI()
@@ -28,21 +30,33 @@ def chat_endpoint(request:ChatRequest):
 
 @app.post("/match-jd")
 def match_jd_endpoint(file:UploadFile=File(...)):
-    file_path = Path(file.filename)
-    with open(file_path, "wb") as f:
-        f.write(file.file.read())
-    if file_path.suffix.lower() == ".pdf":
-        jd_text = read_pdf(file_path)
+    suffix = Path(file.filename).suffix.lower()
 
-    elif file_path.suffix.lower() == ".docx":
-        jd_text = read_docx(file_path)
-
-    else:
+    if suffix not in [".pdf", ".docx"]:
         return {"error": "Only PDF and DOCX files are supported."}
-    
-    with open("candidate_profile.json", "r", encoding="utf-8") as f:
-        candidate_profile = json.load(f)
-    result=match_jd(jd_text,candidate_profile)
-    return result
+
+    file_path = None
+
+    try:
+        with tempfile.NamedTemporaryFile(delete=False, suffix=suffix) as temp_file:
+            temp_file.write(file.file.read())
+            file_path = Path(temp_file.name)
+
+        if suffix == ".pdf":
+            jd_text = read_pdf(file_path)
+
+        elif suffix == ".docx":
+            jd_text = read_docx(file_path)
+
+        with open("candidate_profile.json", "r", encoding="utf-8") as f:
+            candidate_profile = json.load(f)
+
+        result = match_jd(jd_text, candidate_profile)
+
+        return result
+
+    finally:
+        if file_path and file_path.exists():
+            os.remove(file_path)
     
     
