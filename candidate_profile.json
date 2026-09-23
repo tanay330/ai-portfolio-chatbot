@@ -1,0 +1,147 @@
+{
+    "name": "TANAY TIJARE",
+    "email": "tanaytijare6@gmail.com",
+    "phone": "+91 9545198197",
+    "total_experience": 1.2,
+    "skills": [
+        "Python",
+        "Object-Oriented Programming",
+        "Java",
+        "FastAPI",
+        "SQLAlchemy",
+        "JWT Authorization",
+        "Postman",
+        "PostgreSQL",
+        "Docker",
+        "Jenkins",
+        "Nginx",
+        "Pandera",
+        "Pandas",
+        "NumPy",
+        "Seaborn",
+        "Matplotlib",
+        "scikit-learn",
+        "TensorFlow",
+        "Keras",
+        "Data Preprocessing",
+        "Data Cleaning"
+    ],
+    "experience": [
+        {
+            "company": "TCS",
+            "role": "Associate Software Engineer",
+            "duration": "04/2025 \u2013 06/2026",
+            "description": "Designed and developed a multi-service backend system using FastAPI, splitting authentication and data-validation concerns into two independently deployable microservices communicating over REST. Implemented JWT-based authentication and authorization with bcrypt password hashing, and integrated SQLAlchemy ORM with PostgreSQL for secure, efficient data management. Built a dynamic CSV validation engine using Pandera with configurable, database-stored validation rules, processing large files in chunks via Pandas to handle high-volume data without memory overload. Configured Nginx as a reverse proxy to route traffic across services, and containerized the full stack using Docker and docker-compose for consistent deployment across environments. Set up a Jenkins CI/CD pipeline running in Docker to automate build and deployment workflows, reducing manual release effort.",
+            "skills_used": [
+                "FastAPI",
+                "Microservices",
+                "REST",
+                "JWT",
+                "bcrypt",
+                "SQLAlchemy",
+                "PostgreSQL",
+                "Pandera",
+                "Pandas",
+                "Nginx",
+                "Docker",
+                "Jenkins"
+            ]
+        }
+    ],
+    "education": [
+        {
+            "college": "Priyadarshini College of Engineering, Nagpur",
+            "degree": "B.Tech, Computer Technology",
+            "graduation_year": 2024,
+            "cgpa": null
+        },
+        {
+            "college": "Jeevan Vikas Vidyalaya",
+            "degree": "12th Standard, State Board",
+            "graduation_year": 2020,
+            "cgpa": null
+        },
+        {
+            "college": "Jeevan Vikas Vidyalaya",
+            "degree": "10th Standard, State Board",
+            "graduation_year": 2018,
+            "cgpa": null
+        }
+    ],
+    "projects": [
+        {
+            "name": "Spring Boot RESTful Microservice for Managing Hotel Reviews",
+            "type": "Project",
+            "description": "Developed a three-layered architecture using Spring Boot and Spring JPA, integrated with MySQL (in-memory database) for efficient data handling. Implemented CRUD operations for hotel reviews and business logic, improving data processing speed by 30%. Integrated Swagger for API documentation, enhancing developer onboarding and reducing integration time by 25%. Configured Spring Actuator for health checks and status monitoring, improving system reliability and reducing downtime by 20%.",
+            "technologies": [
+                "Java",
+                "Spring Boot",
+                "REST API",
+                "Spring JPA",
+                "MySQL",
+                "Swagger",
+                "Spring Actuator"
+            ],
+            "responsibilities": [
+                "Designed multi-layer architecture",
+                "Implemented CRUD operations",
+                "Integrated API documentation",
+                "Configured health checks"
+            ]
+        },
+        {
+            "name": "Customer Segmentation and Purchase Prediction System",
+            "type": "Project",
+            "description": "Developed an AI-powered analytics system to process CSV data for RFM analysis, churn prediction, customer segmentation, and market basket analysis to support targeted marketing strategies. Built and trained deep learning models using TensorFlow/Keras to identify churn-prone customers and segment users based on behavioral patterns. Performed data preprocessing, feature engineering, and exploratory data analysis using Pandas, NumPy, Matplotlib, and Seaborn to improve data quality and model performance. Created an interactive web application using Flask and Streamlit to enable data upload, visualization of insights, and access to predictive outputs.",
+            "technologies": [
+                "Python",
+                "Deep Learning",
+                "Flask",
+                "Streamlit",
+                "TensorFlow",
+                "Keras",
+                "Pandas",
+                "NumPy",
+                "Matplotlib",
+                "Seaborn"
+            ],
+            "responsibilities": [
+                "Developed data processing pipeline",
+                "Built and trained deep learning models",
+                "Performed feature engineering and EDA",
+                "Implemented interactive web UI"
+            ]
+        }
+    ],
+    "certifications": [],
+    "professional_summary": "Backend Engineer specializing in FastAPI, RESTful API design, microservices architecture, and JWT-based authentication.",
+    "github": null,
+    "linkedin": null,
+    "internships": [
+        {
+            "company": "IBase Technologies",
+            "role": "Intern",
+            "duration": "03/2022 (4 Weeks)",
+            "description": "Performed data analysis and visualization using Pandas, NumPy, Matplotlib, and Seaborn to support insights and improve internal reporting workflows. Collaborated with senior engineers on debugging, code reviews, and applying Python best practices to enhance code quality and maintainability. Documented technical processes and developed reusable modules, reducing repetitive development effort and improving overall development efficiency.",
+            "skills_used": [
+                "Python",
+                "Pandas",
+                "NumPy",
+                "Matplotlib",
+                "Seaborn"
+            ]
+        }
+    ],
+    "hr_profile": {
+    "reason_for_leaving": "Tanay was working on a Python backend project at TCS. After the project went live, he was moved to a non-technical project that was not aligned with his technical skills and career goals. He therefore decided to look for an opportunity more closely aligned with his technical background and career direction.",
+
+    "strengths": [
+        "Ownership and commitment. When Tanay takes responsibility for a task, he makes a strong effort to complete it successfully, even when facing challenges or unexpected situations.",
+        "Continuous learning. Tanay is willing to learn new technologies and apply them practically when they are relevant to his work and career goals."
+    ],
+
+    "weaknesses": [
+        "Time management and prioritization. When handling multiple tasks, Tanay sometimes spends too much time on a single task instead of balancing time across all priorities."
+    ]
+}
+}

@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tanay's AI Portfolio</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <aside class="sidebar" id="sidebar">
+        <div class="sidebar-top">
+            <div class="brand">
+                <div class="brand-avatar">T</div>
+                <div class="brand-text">
+                    <strong>Tanay's Portfolio</strong>
+                    <span>AI-powered profile</span>
+                </div>
+            </div>
+            <button class="icon-button" id="sidebar-toggle" title="Toggle sidebar">☰</button>
+        </div>
+
+        <nav class="sidebar-nav">
+            <button class="nav-item active" data-view="chat">
+                <span>💬</span>
+                <span>AI Chat</span>
+            </button>
+            <button class="nav-item" data-view="jd">
+                <span>📄</span>
+                <span>JD Matcher</span>
+            </button>
+        </nav>
+
+        <div class="sidebar-bottom">
+            <button class="new-chat-button" id="new-chat-button">＋ New conversation</button>
+            <div class="sidebar-note">
+                Ask about experience, skills, projects, education, or upload a job description.
+            </div>
+        </div>
+    </aside>
+
+    <main class="main">
+        <header class="topbar">
+            <div>
+                <h1 id="page-title">AI Portfolio Assistant</h1>
+                <p id="page-subtitle">Ask questions about Tanay's professional profile.</p>
+            </div>
+
+            <label class="theme-toggle">
+                <input type="checkbox" id="theme-toggle">
+                <span class="toggle-track"></span>
+                <span class="theme-label">Dark</span>
+            </label>
+        </header>
+
+        <!-- CHAT VIEW -->
+        <section class="view active" id="chat-view">
+            <div class="chat-card">
+                <div class="chat-box" id="chat-box">
+                    <div class="welcome">
+                        <div class="welcome-icon">✦</div>
+                        <h2>Hi! I'm Tanay's AI portfolio assistant.</h2>
+                        <p>Ask me about Tanay's experience, skills, projects, education, or background.</p>
+                        <div class="suggestions">
+                            <button class="suggestion">Does Tanay have Python experience?</button>
+                            <button class="suggestion">Which project demonstrates his backend skills?</button>
+                            <button class="suggestion">What technologies has he worked with?</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="chat-input-area">
+                    <input
+                        type="text"
+                        id="user-input"
+                        placeholder="Ask something about Tanay..."
+                        autocomplete="off"
+                    >
+                    <button class="send-button" id="send-button">↑</button>
+                </div>
+                <p class="input-hint">AI answers are based on the candidate profile.</p>
+            </div>
+        </section>
+
+        <!-- JD MATCHER VIEW -->
+        <section class="view" id="jd-view">
+            <div class="jd-layout">
+                <div class="jd-card upload-card">
+                    <div class="section-icon">📄</div>
+                    <h2>Job Description Matcher</h2>
+                    <p>
+                        Upload a job description and compare its requirements with Tanay's
+                        candidate profile.
+                    </p>
+
+                    <label class="drop-zone" id="drop-zone" for="jd-file">
+                        <input type="file" id="jd-file" accept=".pdf,.docx">
+                        <div class="upload-icon">↑</div>
+                        <strong id="file-label">Choose a PDF or DOCX</strong>
+                        <span>or drag and drop it here</span>
+                    </label>
+
+                    <button class="primary-button" id="match-button" disabled>
+                        Analyze JD
+                    </button>
+
+                    <div class="upload-status" id="upload-status"></div>
+                </div>
+
+                <div class="jd-card result-card" id="result-card">
+                    <div class="result-empty">
+                        <div class="empty-icon">◎</div>
+                        <h3>Your match analysis will appear here</h3>
+                        <p>Upload a job description to see matched skills, missing requirements, experience, and projects.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <script src="script.js"></script>
+</body>
+</html>
