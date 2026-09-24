@@ -227,7 +227,6 @@ def process_resume(file_path):
 
     try:
         resume_text = read_resume(file_path)
-
         if not resume_text:
             print("Could not extract resume text. Skipping...")
             return
