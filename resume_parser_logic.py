@@ -105,7 +105,18 @@ def match_jd(jd_text,candidate_profile):
        explicitly supported by the candidate profile.
     6. Clearly identify skills/requirements that are not
        supported by the candidate profile.
-    7. Return JSON matching the JDMatchingResult schema: {match_result}.
+    7. If the job description does not contain any identifiable skills,
+    qualifications, responsibilities, experience requirements, or other
+    job-related criteria, do not assign a 100% match.
+    
+    In that case:
+    - set match_percentage to 0
+    - matched_skills must be an empty list
+    - missing_skills must be an empty list
+    - relevant_experience must be null
+    - relevant_projects must be null
+    - explain that no meaningful job requirements were provided   
+    8. Return JSON matching the JDMatchingResult schema: {match_result}.
     """
     
     user_prompt = """
@@ -155,13 +166,16 @@ def parse_resume(resume_text):
         Return ONLY valid JSON matching this schema:
     
         {resume_schema} 
+
+
         Important rules:
         
             1. Do not invent information.
             2. If a value is not available, return null.
             3. If a list has no information, return an empty list.
             4. Put full-time/professional employment in experience and internships in internships.
-            5. Extract skills mentioned across the entire resume."""
+            5. Extract skills mentioned across the entire resume.
+            """
     user_prompt = f"""
         Parse the following resume:
     

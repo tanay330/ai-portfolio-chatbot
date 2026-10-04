@@ -87,6 +87,7 @@ backend development skills. At TCS, he worked on Python/FastAPI-based
 backend services, REST APIs, microservices, JWT authentication,
 SQLAlchemy, PostgreSQL, and data validation.
 
+
 OUTPUT FORMAT
 Provide a clear, professional, and concise answer.
 Base answers on the candidate profile.
@@ -109,26 +110,29 @@ sys_message={
         "content":system_prompt
     }
 
-messages=[sys_message]
+conversations={}
 
 
-def chat(user_question, messages):
-        
-        user_message={
+def chat(user_question, session_id):
+    
+    if session_id not in conversations:
+        conversations[session_id] = [sys_message]
+    messages = conversations[session_id]
+    user_message={
             "role":"user",
             "content":user_question
         }
-        messages.append(user_message)
-        response=client.chat.completions.create(model=model,messages=messages,stream=True)
-        full_answer=""
-        for chunk in response:
-            answer = chunk.choices[0].delta.content
+    messages.append(user_message)
+    response=client.chat.completions.create(model=model,messages=messages,stream=True)
+    full_answer=""
+    for chunk in response:
+        answer = chunk.choices[0].delta.content
 
-            if answer:
-                full_answer+=answer
-                yield answer
-        assistant_message={
+        if answer:
+            full_answer+=answer
+            yield answer
+    assistant_message={
             "role":"assistant",
             "content":full_answer
 }
-        messages.append(assistant_message)
+    messages.append(assistant_message)

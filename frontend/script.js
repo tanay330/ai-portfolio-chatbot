@@ -2,7 +2,7 @@
 // Configuration
 // ==============================
 
-const API_BASE_URL = "https://ai-portfolio-chatbot-bpqw.onrender.com";
+const API_BASE_URL ="https://ai-portfolio-chatbot-bpqw.onrender.com";
 
 // ==============================
 // Common elements
@@ -69,6 +69,8 @@ const userInput = document.getElementById("user-input");
 const sendButton = document.getElementById("send-button");
 const newChatButton = document.getElementById("new-chat-button");
 
+let sessionId = crypto.randomUUID();
+
 async function getChatResponse(message) {
     const loadingMessage = document.createElement("div");
     loadingMessage.classList.add("message", "ai-message");
@@ -83,7 +85,8 @@ async function getChatResponse(message) {
                 "Content-Type": "application/json"
             },
             body: JSON.stringify({
-                message: message
+                message: message,
+                session_id: sessionId
             })
         });
 
@@ -161,6 +164,7 @@ document.querySelectorAll(".suggestion").forEach((button) => {
 });
 
 newChatButton.addEventListener("click", () => {
+    sessionId = crypto.randomUUID();
     chatBox.innerHTML = `
         <div class="welcome">
             <div class="welcome-icon">✦</div>
@@ -245,6 +249,7 @@ async function matchJD() {
     if (!selectedFile) {
         return;
     }
+    
 
     matchButton.disabled = true;
     matchButton.textContent = "Analyzing...";
@@ -264,6 +269,16 @@ async function matchJD() {
         }
 
         const result = await response.json();
+        if (result.error) {
+    uploadStatus.textContent = result.error;
+    resultCard.innerHTML = `
+        <div class="result-section">
+            <h3>Unable to Analyze JD</h3>
+            <p class="result-text">${escapeHtml(result.error)}</p>
+        </div>
+    `;
+    return;
+}
 
         renderMatchResult(result);
 
